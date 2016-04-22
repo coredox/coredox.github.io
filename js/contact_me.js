@@ -25,9 +25,11 @@ $(function() {
               data:{ chat_id:'-1001048319016',
                       text:formData,
                     parse_mode : 'html'},
-              dataType: "jsonp",
+              dataType: "json",
+              jsonp: "callback",
                 cache: false,
-                success: function() {
+                success: function(data) {
+                  console.log(data);
                     // Enable button & show success message
                     $("#btnSubmit").attr("disabled", false);
                     $('#success').html("<div class='alert alert-success'>");
@@ -41,7 +43,8 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                 },
-                error: function() {
+                error: function(data) {
+                  console.log(data);
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
