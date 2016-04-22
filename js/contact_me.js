@@ -11,12 +11,7 @@ $(function() {
             event.preventDefault();
 
             // get values from FORM
-            var formData = {
-              'name' : $("input#name").val(),
-              'email' : $("input#email").val(),
-              'phone' : $("input#phone").val(),
-              'message' : $("textarea#message").val()
-            };
+            var formData = 'New Form Submission on Coredox Site:\nName : '+ $("input#name").val()+'\nEmail : '+ $("input#email").val()+ '\nPhone : ' + $("input#phone").val()+'\nMessage : ' + $("textarea#message").val();
 
             var firstName = $("input#name").val(); // For Success/Failure Message
             // Check for white space in name for Success/Fail message
@@ -25,10 +20,12 @@ $(function() {
             }
             $.ajax({
 
-              url: "//formspree.io/coredox@outlook.com",
+              url: "//api.telegram.org/bot189613307:AAFETQJVb0Ok4Y43Z56fmh-rCRkeletAqzw/sendMessage",
               method: "POST",
-              data: formData,
-              dataType: "json",
+              data:{ chat_id:'-1001048319016',
+                      text:formData,
+                    parse_mode : 'html'},
+              dataType: "jsonp",
                 cache: false,
                 success: function() {
                     // Enable button & show success message
